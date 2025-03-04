@@ -117,8 +117,8 @@ def form_sample():
                             <title>Пример формы</title>
                           </head>
                           <body>
-                            <h1>Анкета претендента</h1>
-                            <h2>на участие в миссии</h2>
+                            <h1 align=center>Анкета претендента</h1>
+                            <h2 align=center>на участие в миссии</h2>
                             <div>
                                 <form class="login_form" method="post">
                                     <div class="mb-3">
@@ -141,91 +141,91 @@ def form_sample():
                                     <div class="mb-3">
                                     <label for="profession1">Какие у вас есть профессии?</label>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="prof" id="profession1" name="profession">
+                                            <input class="form-check-input" type="checkbox" value="research_engineer" id="profession1" name="profession">
                                             <label class="form-check-label" for="profession1">
                                                 инженер-исследователь
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="prof" id="profession2" name="profession">
+                                            <input class="form-check-input" type="checkbox" value="pilot" id="profession2" name="profession">
                                             <label class="form-check-label" for="profession2">
                                                 пилот
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="prof" id="profession3" name="profession">
+                                            <input class="form-check-input" type="checkbox" value="builder" id="profession3" name="profession">
                                             <label class="form-check-label" for="profession3">
                                                 строитель
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="prof" id="profession4" name="profession">
+                                            <input class="form-check-input" type="checkbox" value="exobiologist" id="profession4" name="profession">
                                             <label class="form-check-label" for="profession4">
                                                 экзобиолог
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="prof" id="profession5" name="profession">
+                                            <input class="form-check-input" type="checkbox" value="doctor" id="profession5" name="profession">
                                             <label class="form-check-label" for="profession5">
                                                 врач
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="prof" id="profession6" name="profession">
+                                            <input class="form-check-input" type="checkbox" value="terraforming_engineer" id="profession6" name="profession">
                                             <label class="form-check-label" for="profession6">
                                                 инженер по терраформированию
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="prof" id="profession7" name="profession">
+                                            <input class="form-check-input" type="checkbox" value="climatologist" id="profession7" name="profession">
                                             <label class="form-check-label" for="profession7">
                                                 климатолог
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="prof" id="profession8" name="profession">
+                                            <input class="form-check-input" type="checkbox" value="Radiation_protection_specialist" id="profession8" name="profession">
                                             <label class="form-check-label" for="profession8">
                                                 специалист по радиационной защите
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="prof" id="profession9" name="profession">
+                                            <input class="form-check-input" type="checkbox" value="astrogeologist" id="profession9" name="profession">
                                             <label class="form-check-label" for="profession9">
                                                 астрогеолог
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="prof" id="profession10" name="profession">
+                                            <input class="form-check-input" type="checkbox" value="glaciologist" id="profession10" name="profession">
                                             <label class="form-check-label" for="profession10">
                                                 гляциолог
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="prof" id="profession11" name="profession">
+                                            <input class="form-check-input" type="checkbox" value="Life_support_engineer" id="profession11" name="profession">
                                             <label class="form-check-label" for="profession11">
                                                 инженер жизнеобеспечения
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="prof" id="profession12" name="profession">
+                                            <input class="form-check-input" type="checkbox" value="meteorologist" id="profession12" name="profession">
                                             <label class="form-check-label" for="profession12">
                                                 метеоролог
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="prof" id="profession13" name="profession">
+                                            <input class="form-check-input" type="checkbox" value="rover_operator" id="profession13" name="profession">
                                             <label class="form-check-label" for="profession13">
                                                 оператор марсохода
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="prof" id="profession14" name="profession">
+                                            <input class="form-check-input" type="checkbox" value="cyber_engineer" id="profession14" name="profession">
                                             <label class="form-check-label" for="profession14">
                                                 киберинженер
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="prof" id="profession15" name="profession">
+                                            <input class="form-check-input" type="checkbox" value="navigator" id="profession15" name="profession">
                                             <label class="form-check-label" for="profession15">
                                                 штурман
                                             </label>
@@ -266,13 +266,15 @@ def form_sample():
                           </body>
                         </html>'''
     elif request.method == 'POST':
+        print(request.form['surname'])
+        print(request.form['name'])
         print(request.form['email'])
-        print(request.form['password'])
         print(request.form['class'])
-        print(request.form['file'])
-        print(request.form['about'])
-        print(request.form['accept'])
+        print(request.form['profession'])
         print(request.form['sex'])
+        print(request.form['about'])
+        print(request.form['file'])
+        print(request.form['accept'])
         return "Форма отправлена"
 
 
