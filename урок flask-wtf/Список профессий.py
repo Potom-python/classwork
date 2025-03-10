@@ -28,5 +28,16 @@ def list_prof(list):
     return render_template('list_prof.html', s=s, list=list)
 
 
+@app.route('/answer')
+@app.route('/auto_answer')
+def answer():
+    css = url_for('static', filename='css/style.css')
+    slovar = {
+        'title': 'Анкета', 'surname': 'Watny', 'name': 'Mark', 'education': 'выше среднего',
+        'profession': 'климатолог', 'sex': 'male', 'motivation': 'Хочу жить на Марсе!', 'ready': 'True'
+    }
+    return render_template('auto_answer.html', slovar=slovar, css=css, title=slovar['title'])
+
+
 if __name__ == '__main__':
     app.run(port=8080, host='127.0.0.1')

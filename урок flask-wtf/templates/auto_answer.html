@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{{css}}">
+    <div>
+        Фамилия: {{slovar['surname']}}<br>
+        Имя: {{slovar['name']}}<br>
+        Образование: {{slovar['education']}}<br>
+        Профессия: {{slovar['profession']}}<br>
+        Пол: {{slovar['sex']}}<br>
+        Мотивация: {{slovar['motivation']}}<br>
+        Готовы остаться на Марсе? {{slovar['ready']}}
+    </div>
+{% endblock %}
