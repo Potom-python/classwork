@@ -1,5 +1,6 @@
 from data import db_session
 from data.users import User
+from data.jobs import Jobs
 
 
 def main():
@@ -48,6 +49,15 @@ def main():
     user.address = "module_4"
     user.email = "kirill_janitor@mars.org"
     db_sess.add(user)
+    db_sess.commit()
+
+    job = Jobs()
+    job.team_leader = 1
+    job.job = 'deployment of residential modules 1 and 2'
+    job.work_size = 15
+    job.collaborators = '2, 3'
+    job.is_finished = False
+    db_sess.add(job)
     db_sess.commit()
 
 
