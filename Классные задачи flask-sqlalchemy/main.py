@@ -73,6 +73,24 @@ def main():
         db_sess.add(job)
         db_sess.commit()
 
+        job = Jobs()
+        job.team_leader = 3
+        job.job = 'deployment of residential modules 2 and 3'
+        job.work_size = 30
+        job.collaborators = '3, 4'
+        job.is_finished = True
+        db_sess.add(job)
+        db_sess.commit()
+
+        job = Jobs()
+        job.team_leader = 2
+        job.job = 'deployment of residential modules 3 and 4'
+        job.work_size = 30
+        job.collaborators = '4, 5'
+        job.is_finished = False
+        db_sess.add(job)
+        db_sess.commit()
+
     @login_manager.user_loader
     def load_user(user_id):
         db_sess = db_session.create_session()
@@ -81,7 +99,9 @@ def main():
     @app.route("/")
     def table():
         jobs = db_sess.query(Jobs).all()
-        return render_template('table.html', jobs=jobs)
+        users = db_sess.query(User).all()
+        users_dict = {user.id: (user.name, user.surname) for user in users}
+        return render_template('table.html', jobs=jobs, users_dict=users_dict)
 
     @app.route('/register', methods=['GET', 'POST'])
     def reqister():

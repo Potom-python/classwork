@@ -2,7 +2,7 @@
 {% block content %}
 <h5 align="center">Works log</h5>
 <div>
-    {% for job in jobs%}
+    {% for job in jobs %}
     <h6>Action #{{ job.id }}</h6>
     <table class="table table-info table-striped">
         <tr>
@@ -13,11 +13,12 @@
             <th>is finished</th>
         </tr>
         <tr>
-            <td>{{job.job}}</td>
-            <td>{{job.id}}</td>
-            <td>{{job.work_size}}</td>
-            <td>{{job.collaborators}}</td>
-            {% if job.is_finished%}
+            <td>{{ job.job }}</td>
+            {% set team_leader = users_dict[job.team_leader] if job.team_leader in users_dict else (None, None) %}
+            <td>{{ team_leader[0] if team_leader[0] else 'Error' }} {{ team_leader[1] if team_leader[1] else '' }}</td>
+            <td>{{ job.work_size }}</td>
+            <td>{{ job.collaborators }}</td>
+            {% if job.is_finished %}
             <td class="table-success">is finished</td>
             {% else %}
             <td class="table-danger">is not finished</td>
@@ -26,5 +27,4 @@
     </table>
     {% endfor %}
 </div>
-
 {% endblock %}
