@@ -1,12 +1,13 @@
 import os
 
 from flask import Flask, render_template, redirect
-from flask_login import login_user, logout_user, login_required, LoginManager
+from flask_login import login_user, logout_user, login_required, LoginManager, current_user
 
 from data import db_session
 from data.jobs import Jobs
 from data.users import User
 from forms.user import LoginForm, RegisterForm
+from forms.jobs import JobsForm
 
 app = Flask(__name__)
 login_manager = LoginManager()
@@ -100,6 +101,24 @@ def main():
     def logout():
         logout_user()
         return redirect("/")
+
+    @app.route('/jobs', methods=['GET', 'POST'])
+    @login_required
+    def add_job():
+        form = JobsForm()
+        if form.validate_on_submit():
+            db_sess = db_session.create_session()
+            jobs = Jobs()
+            jobs.team_leader = form.team_leader.data
+            jobs.job = form.job.data
+            jobs.work_size = form.work_size.data
+            jobs.collaborators = form.collaborators.data
+            jobs.is_finished = form.is_finished.data
+            current_user.jobs.append(jobs)
+            db_sess.merge(current_user)
+            db_sess.commit()
+            return redirect('/')
+        return render_template('jobs.html', title='Добавление работы', form=form)
 
     @app.route("/")
     def table():
