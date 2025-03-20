@@ -1,8 +1,7 @@
 import os
 
 from flask import Flask, render_template, redirect
-from flask_login import LoginManager
-from flask_login import login_user
+from flask_login import login_user, logout_user, login_required, LoginManager
 
 from data import db_session
 from data.jobs import Jobs
@@ -95,6 +94,12 @@ def main():
     def load_user(user_id):
         db_sess = db_session.create_session()
         return db_sess.query(User).get(user_id)
+
+    @app.route('/logout')
+    @login_required
+    def logout():
+        logout_user()
+        return redirect("/")
 
     @app.route("/")
     def table():
