@@ -1,12 +1,12 @@
 import os
 
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, make_response, jsonify
 from flask_login import login_user, logout_user, login_required, LoginManager, current_user
 
-from data import db_session
 from data.jobs import Jobs
 from data.users import User
 from forms.user import LoginForm, RegisterForm
+from data import db_session, jobs_api
 from forms.jobs import JobsForm
 
 app = Flask(__name__)
@@ -18,6 +18,7 @@ app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 def main():
     db_session.global_init("db/jobs.db")
     db_sess = db_session.create_session()
+    app.register_blueprint(jobs_api.blueprint)
 
     if not os.path.isfile('db/jobs.db'):
         user = User()
@@ -90,6 +91,14 @@ def main():
         job.is_finished = False
         db_sess.add(job)
         db_sess.commit()
+
+    @app.errorhandler(404)
+    def not_found(error):
+        return make_response(jsonify({'error': 'Not found'}), 404)
+
+    @app.errorhandler(400)
+    def bad_request(_):
+        return make_response(jsonify({'error': 'Bad Request'}), 400)
 
     @login_manager.user_loader
     def load_user(user_id):

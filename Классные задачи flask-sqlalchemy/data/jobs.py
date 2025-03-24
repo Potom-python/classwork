@@ -4,9 +4,12 @@ import sqlalchemy
 from sqlalchemy import orm, ForeignKey
 
 from .db_session import SqlAlchemyBase
+from flask_login import UserMixin
+from sqlalchemy_serializer import SerializerMixin
 
 
-class Jobs(SqlAlchemyBase):
+
+class Jobs(SqlAlchemyBase, SerializerMixin, UserMixin):
     __tablename__ = 'jobs'
 
     id = sqlalchemy.Column(sqlalchemy.Integer,
