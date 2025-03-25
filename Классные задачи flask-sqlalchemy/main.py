@@ -1,8 +1,8 @@
 import os
 
-from flask import Flask, render_template, redirect, make_response, jsonify
+from flask import Flask, render_template, redirect, make_response, jsonify, abort
 from flask_login import login_user, logout_user, login_required, LoginManager, current_user
-
+from flask import request
 from data.jobs import Jobs
 from data.users import User
 from forms.user import LoginForm, RegisterForm
@@ -129,6 +129,43 @@ def main():
             return redirect('/')
         return render_template('jobs.html', title='Добавление работы', form=form)
 
+    @app.route('/jobs/<int:id>', methods=['GET', 'POST'])
+    @login_required
+    def edit_jobs(id):
+        form = JobsForm()
+        if request.method == "GET":
+            db_sess = db_session.create_session()
+            jobs = db_sess.query(Jobs).filter(Jobs.id == id,
+                                              ((Jobs.user == current_user) | (current_user.id == 1))
+                                              ).first()
+            if jobs:
+                form.job.data = jobs.job
+                form.team_leader.data = jobs.team_leader
+                form.work_size.data = jobs.work_size
+                form.collaborators.data = jobs.collaborators
+                form.is_finished.data = jobs.is_finished
+            else:
+                abort(404)
+            if form.validate_on_submit():
+                db_sess = db_session.create_session()
+                jobs = db_sess.query(Jobs).filter(Jobs.id == id,
+                                                  ((Jobs.user == current_user) | (current_user.id == 1))
+                                                  ).first()
+                if jobs:
+                    jobs.job = form.job.data
+                    jobs.team_leader = form.team_leader.data
+                    jobs.work_size = form.work_size.data
+                    jobs.collaborators = form.collaborators.data
+                    jobs.is_finished = form.is_finished.data
+                    db_sess.commit()
+                    return redirect('/')
+                else:
+                    abort(404)
+            return render_template('jobs.html',
+                                   title='Редактирование новости',
+                                   form=form
+                                   )
+
     @app.route("/")
     def table():
         jobs = db_sess.query(Jobs).all()
@@ -180,6 +217,5 @@ def main():
 
     app.run(port=8080, host='127.0.0.1')
 
-
-if __name__ == '__main__':
-    main()
+    if __name__ == '__main__':
+        main()
