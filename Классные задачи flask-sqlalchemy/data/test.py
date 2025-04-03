@@ -13,6 +13,20 @@ print(post('http://localhost:8080/api/jobs',
                  'collaborators': '6, 3', 'is_finished': True}).json())  # верный запрос
 
 print(delete('http://localhost:8080/api/jobs/999').json())
-# новости с id = 999 нет в базе
 
 print(delete('http://localhost:8080/api/jobs/5').json())
+
+print(get('http://localhost:8080/api/v2/users').json())
+print(get('http://localhost:8080/api/v2/users/1').json())
+
+print(post('http://localhost:8080/api/v2/users').json())
+print(post('http://localhost:8080/api/v2/users',
+           json={'id': 6, 'user': 'bor'}).json())
+print(post('http://localhost:8080/api/v2/users',
+           json={'id': 1, 'surname': 'borov', 'name': 'bor', 'age': 47, 'email': 'borov@gmail.com'}).json())
+print(post('http://localhost:8080/api/v2/users',
+           json={'id': 6, 'surname': 'borov', 'name': 'bor', 'age': 47, 'email': 'borov@gmail.com'}).json())
+
+print(delete('http://localhost:8080/api/v2/users/6'))
+print(delete('http://localhost:8080/api/v2/users/0'))
+

@@ -1,15 +1,19 @@
 import os
 
 from flask import Flask, render_template, redirect, make_response, jsonify, abort
-from flask_login import login_user, logout_user, login_required, LoginManager, current_user
 from flask import request
+from flask_login import login_user, logout_user, login_required, LoginManager, current_user
+from flask_restful import Api
+
+import users_resource
+from data import db_session, jobs_api
 from data.jobs import Jobs
 from data.users import User
-from forms.user import LoginForm, RegisterForm
-from data import db_session, jobs_api
 from forms.jobs import JobsForm
+from forms.user import LoginForm, RegisterForm
 
 app = Flask(__name__)
+api = Api(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
@@ -19,6 +23,8 @@ def main():
     db_session.global_init("db/jobs.db")
     db_sess = db_session.create_session()
     app.register_blueprint(jobs_api.blueprint)
+    api.add_resource(users_resource.UsersListResource, '/api/v2/users')
+    api.add_resource(users_resource.UsersResource, '/api/v2/users/<int:users_id>')
 
     if not os.path.isfile('db/jobs.db'):
         user = User()
@@ -217,5 +223,6 @@ def main():
 
     app.run(port=8080, host='127.0.0.1')
 
-    if __name__ == '__main__':
-        main()
+
+if __name__ == '__main__':
+    main()
