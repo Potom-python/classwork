@@ -6,6 +6,7 @@ from flask_login import login_user, logout_user, login_required, LoginManager, c
 from flask_restful import Api
 
 import users_resource
+import jobs_resource
 from data import db_session, jobs_api
 from data.jobs import Jobs
 from data.users import User
@@ -25,6 +26,8 @@ def main():
     app.register_blueprint(jobs_api.blueprint)
     api.add_resource(users_resource.UsersListResource, '/api/v2/users')
     api.add_resource(users_resource.UsersResource, '/api/v2/users/<int:users_id>')
+    api.add_resource(jobs_resource.JobsListResource, '/api/v2/jobs')
+    api.add_resource(jobs_resource.JobsResource, '/api/v2/jobs/<int:jobs_id>')
 
     if not os.path.isfile('db/jobs.db'):
         user = User()

@@ -30,3 +30,17 @@ print(post('http://localhost:8080/api/v2/users',
 print(delete('http://localhost:8080/api/v2/users/6'))
 print(delete('http://localhost:8080/api/v2/users/0'))
 
+print(get('http://localhost:8080/api/v2/jobs').json())
+print(get('http://localhost:8080/api/v2/jobs/1').json())
+
+print(post('http://localhost:8080/api/v2/jobs').json())
+print(post('http://localhost:8080/api/v2/jobs',
+           json={'id': 10, 'user': 'bor'}).json())
+print(post('http://localhost:8080/api/v2/jobs',
+           json={'id': 1, 'surname': 'borov', 'name': 'bor', 'age': 47, 'email': 'borov@gmail.com'}).json())
+print(post('http://localhost:8080/api/v2/jobs',
+           json={'id': 10, 'team_leader': 'borov', 'job': 'install python on pc', 'work_size': 2, 'collaborators': '1, 6', 'is_finished': False}).json())
+
+print(delete('http://localhost:8080/api/v2/jobs/10'))
+print(delete('http://localhost:8080/api/v2/jobs/0'))
+

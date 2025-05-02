@@ -54,7 +54,7 @@ class UsersListResource(Resource):
         session = db_session.create_session()
         users = User(
             id=args['id'],
-            surname=args['id'],
+            surname=args['surname'],
             name=args['name'],
             age=args['age'],
             position=args['position'],
